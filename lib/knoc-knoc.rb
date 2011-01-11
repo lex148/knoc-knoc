@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'net/ping'
+#require 'net/ping'
+require 'ping'
 require 'socket'
 
 module KnocKnoc
@@ -19,10 +20,23 @@ module KnocKnoc
 
   SUBNET = /([0-9]+\.){3}/.match(local_ip).to_s
 
-  def list
-    (1..254).map do |n|
-      Net::Ping::TCP.new(SUBNET + n.to_s)
+  @internal_list = []
+
+  def refresh_list
+    @internal_list = []
+    threads = []
+    (1..254).select do |num|
+      threads << Thread.new(num) do |n|
+        ip = SUBNET + n.to_s
+        @internal_list.push ip if Ping.pingecho( SUBNET + n.to_s )
+      end
     end
+    threads.each { |th| th.join }
+    @internal_list
+  end
+
+  def list
+    @internal_list
   end
 
 end
