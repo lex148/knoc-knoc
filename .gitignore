@@ -1,0 +1,20 @@
+# Files
+*.swp
+*.swo
+*.jpg
+.DS_Store
+.rvmrc
+.bundle/
+
+# Dir
+tmp/
+coverage/
+scratch_directory/
+rdoc/
+pkg/
+doc/
+gems/
+
+*.gem
+.yardoc
+
