@@ -28,7 +28,7 @@ module KnocKnoc
   @internal_list = []
 
   def refresh_list
-    @internal_list = hostname_list 
+    @internal_list = full_list 
   end
 
   def ping_all
@@ -45,11 +45,11 @@ module KnocKnoc
     list
   end
 
-  def hostname_list
+  def full_list
     addresses, threads, list = ping_all, [], []
     addresses.each do |address|
       threads << Thread.new(address) do |a|
-          list.push( { :ip => a, :hostname => get_hostname(a) } )
+          list.push( { :ip => a, :mac => get_mac(a) } )
       end
     end
     threads.each { |th| th.join }
