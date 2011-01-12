@@ -61,4 +61,13 @@ module KnocKnoc
     @internal_list
   end
 
+  def get_mac ip
+    mac = /([a-zA-Z0-9]+:)+([a-zA-Z0-9]+)/.match(`arp #{ip}`).to_s
+    mac = mac.split /:/
+    mac = mac.map{ |p| '%02s' % p }
+    mac = mac.map{ |p| p.gsub(' ', '0' ) }
+    mac = mac.join(':')
+    mac.upcase
+  end
+
 end
