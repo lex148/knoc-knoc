@@ -6,11 +6,9 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    macaddr (1.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   knoc-knoc!
-  macaddr

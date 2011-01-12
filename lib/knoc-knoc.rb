@@ -3,7 +3,7 @@ require 'bundler/setup'
 #require 'net/ping'
 require 'ping'
 require 'socket'
-require 'macaddr'
+#require 'macaddr'
 
 module KnocKnoc
   module_function
@@ -28,17 +28,32 @@ module KnocKnoc
   @internal_list = []
 
   def refresh_list
-    @internal_list = []
-    list = []
-    threads = []
+    @internal_list = hostname_list 
+  end
+
+  def ping_all
+    threads, list = [], []
     (1..254).select do |num|
       threads << Thread.new(num) do |n|
         ip = SUBNET + n.to_s
-        list.push ip if Ping.pingecho( SUBNET + n.to_s )
+        if Ping.pingecho( SUBNET + n.to_s, 2 )
+          list.push( ip )
+        end
       end
     end
     threads.each { |th| th.join }
-    @internal_list = list.map{|ip| {:ip => ip, :hostname => get_hostname(ip) }}
+    list
+  end
+
+  def hostname_list
+    addresses, threads, list = ping_all, [], []
+    addresses.each do |address|
+      threads << Thread.new(address) do |a|
+          list.push( { :ip => a, :hostname => get_hostname(a) } )
+      end
+    end
+    threads.each { |th| th.join }
+    list
   end
 
   def list
