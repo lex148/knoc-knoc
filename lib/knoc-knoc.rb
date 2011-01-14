@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'bundler/setup'
-#require 'net/ping'
 require 'ping'
 require 'socket'
 
@@ -77,7 +76,7 @@ module KnocKnoc
     (1..254).select do |num|
       threads << Thread.new(num) do |n|
         ip = SUBNET + n.to_s
-        if Ping.pingecho( SUBNET + n.to_s, 2 )
+        if Ping.pingecho( SUBNET + n.to_s, 0.1 )
           list.push( ip )
         end
       end
