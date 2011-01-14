@@ -13,16 +13,19 @@ module KnocKnoc
   @whos_there, @whos_new, @whos_left = [], [], []
 
   def whos_there
+    refresh_lists
     @whos_there
   end
 
   def whos_new
+    refresh_lists
     new_list = @whos_new
     @whos_new = []
     new_list
   end
 
   def whos_left
+    refresh_lists
     left_list = @whos_left
     @whos_left = []
     left_list
@@ -63,7 +66,7 @@ module KnocKnoc
 
   def update_whos_left left_ips
     left_ips.each do |ip|
-      host = @whos_there.find( x => x.ip == ip)
+      host = @whos_there.find{ |x| x.ip == ip }
       @whos_there = @whos_there - [host]
       @whos_left.push host
     end
