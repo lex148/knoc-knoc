@@ -25,7 +25,7 @@ module KnocKnoc
   def whos_left
     left_list = @whos_left
     @whos_left = []
-    whos_left
+    left_list
   end
 
 
@@ -51,7 +51,6 @@ module KnocKnoc
 
   SUBNET = /([0-9]+\.){3}/.match(local_ip).to_s
 
-  private
 
 
   def update_new_ips new_ips
@@ -84,6 +83,7 @@ module KnocKnoc
     list
   end
 
+  private
 
 
 
