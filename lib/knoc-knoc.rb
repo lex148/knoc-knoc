@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'ping'
+#require 'ping'
+require 'net/ping'
 require 'socket'
 
 require File.dirname(__FILE__) + '/knoc-knoc/host'
@@ -76,7 +77,8 @@ module KnocKnoc
     (1..254).select do |num|
       threads << Thread.new(num) do |n|
         ip = SUBNET + n.to_s
-        if Ping.pingecho( SUBNET + n.to_s, 0.1 )
+        if Net::Ping::External.new(ip, 1).ping?
+        #if Ping.pingecho( SUBNET + n.to_s, 0.1 )
           list.push( ip )
         end
       end
