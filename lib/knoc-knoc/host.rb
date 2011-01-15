@@ -14,9 +14,6 @@ module KnocKnoc
 
     private 
 
-    def get_hostname ip
-      Socket::getaddrinfo(ip,nil)[0][2]
-    end
 
     def get_mac ip
       mac = /([a-zA-Z0-9]+:)+([a-zA-Z0-9]+)/.match(`arp #{ip}`).to_s
@@ -24,7 +21,15 @@ module KnocKnoc
       mac = mac.map{ |p| '%02s' % p }
       mac = mac.map{ |p| p.gsub(' ', '0' ) }
       mac = mac.join(':')
-      mac.upcase
+      mac = mac.upcase
+      mac = nil if mac == ''
+    end
+
+    def get_hostname ip
+      r = /pointer.+$/.match(`host #{ip}`)
+      if r
+        r.to_s.gsub("pointer ", "").gsub(/\.$/,"")
+      end
     end
 
   end
