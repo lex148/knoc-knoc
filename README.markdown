@@ -6,6 +6,7 @@ It will tell you when someone new arrives and when someone leaves
 ##About KnocKnoc
 
 KnocKnoc has two modes live and monitor. 
+
 Monitor mode scans your network in the background. if you ask KnocKnoc whos there in monitor mode, it will only tell you about who it knows about right then.
  
 Live mode only scans when you ask about the network. when in live mode you are guaranteed a fill list of people on your network, however you will have to wait for it.
