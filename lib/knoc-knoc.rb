@@ -3,12 +3,10 @@ require 'bundler/setup'
 require 'net/ping'
 require 'socket'
 
-(`ls #{File.dirname(__FILE__) + '/knoc-knoc/*.rb'}`.split /.rb\n/).sort.each do |klass| 
-  require klass
-end
-#require File.dirname(__FILE__) + '/knoc-knoc/host'
-#require File.dirname(__FILE__) + '/knoc-knoc/watchman'
-#require File.dirname(__FILE__) + '/knoc-knoc/watchman'
+require File.dirname(__FILE__) + '/knoc-knoc/host'
+require File.dirname(__FILE__) + '/knoc-knoc/watchman'
+require File.dirname(__FILE__) + '/knoc-knoc/watchman_live'
+require File.dirname(__FILE__) + '/knoc-knoc/watchman_monitor'
 
 module KnocKnoc
   module_function

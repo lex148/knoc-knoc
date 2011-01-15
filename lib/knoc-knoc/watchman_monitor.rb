@@ -7,7 +7,7 @@ module KnocKnoc
       @running = true
       #run the refresh_lists once before 
       #starting the set interval
-      Thread.new() do |a|
+      Thread.new() do 
         self.refresh_lists
         self.repeat_every(30) do 
           self.refresh_lists

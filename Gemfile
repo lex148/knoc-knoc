@@ -2,5 +2,4 @@ source 'http://rubygems.org'
 
 gemspec
 
-gem 'net-ping'
-#gem 'macaddr'
+gem 'net-ping', '>= 1.3.7'

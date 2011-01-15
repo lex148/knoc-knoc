@@ -21,6 +21,8 @@ Live mode only scans when you ask about the network. when in live mode you are g
 
 To use KnocKnoc you ask it who is there
 
+require 'knoc-knoc'
+
 - KnocKnoc::whos_there => [list of people on your network]
 - KnocKnoc::whos_new => [list of the new people on your network]
 - KnocKnoc::whos_left => [list of the people that have left your network]
