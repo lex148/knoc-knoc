@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Lex Childs"]
   s.email       = ["lex@childs.me"]
-  s.homepage    = %q{https://github.com/lex148/knoc-knoc}
+  s.homepage    = %q{http://github.com/lex148/knoc-knoc}
   s.summary     = %q{A library to tell you who is there.}
 
 
