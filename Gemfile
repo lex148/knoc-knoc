@@ -1,5 +1,4 @@
-source 'http://rubygems.org'
+source "http://rubygems.org"
 
+# Specify your gem's dependencies in knoc-knoc.gemspec
 gemspec
-
-gem 'net-ping', '>= 1.3.7'
