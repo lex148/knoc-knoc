@@ -73,7 +73,7 @@ module KnocKnoc
     end
 
     def self.ping ip
-      !!(/1 received/.match(`ping #{ip} -c 1 -w 1`))
+      !!(/1 received/.match(`ping -c 1 -w 1 #{ip}`))
     end
 
     def cleanup
